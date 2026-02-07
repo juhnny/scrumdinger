@@ -48,5 +48,3 @@ extension DailyScrum {
         DailyScrum(title: "", attendees: [], lengthInMinutes: 5, theme: .sky)
     }
 }
-
-// commit test
