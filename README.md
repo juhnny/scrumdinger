@@ -1,8 +1,6 @@
 # Scrumdinger
 
-Apple iOS tutorial 
-
-Link: https://developer.apple.com/tutorials/app-dev-training
+Source code for the [Apple iOS tutorial](https://developer.apple.com/tutorials/app-dev-training)
 
 ## SwiftUI essentials
 ## Views
