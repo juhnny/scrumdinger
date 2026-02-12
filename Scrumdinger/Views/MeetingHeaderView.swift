@@ -5,4 +5,50 @@
 //  Created by Juhnny Ko on 2/13/26.
 //
 
-import Foundation
+import SwiftUI
+
+struct MeetingHeaderView: View {
+    let secondsElapsed: Int
+    let secondsRemaining: Int
+    
+    private var totalSeconds: Int {
+        secondsElapsed + secondsRemaining
+    }
+    private var progress: Double {
+        guard totalSeconds > 0 else { return 0 }
+        
+        return Double(secondsElapsed) / Double(totalSeconds)
+    }
+    private var minutesRemaining: Int {
+//        Int(ceil(Double(secondsRemaining) / 60.0))
+        secondsRemaining / 60
+    }
+    
+    var body: some View {
+        VStack {
+            ProgressView(value: progress)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Seconds Elapsed")
+                        .font(.caption)
+                    // The image uses one of the included SF Symbols. The system treats these symbols like fonts, so they scale dynamically with a user’s device settings.
+                    Label("\(secondsElapsed)", systemImage: "hourglass.tophalf.fill")
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    Text("Seconds Remaining")
+                        .font(.caption)
+                    Label("\(secondsRemaining)", systemImage: "hourglass.bottomhalf.fill")
+                }
+                
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Time remaining")
+        .accessibilityValue("\(minutesRemaining) minutes")
+    }
+}
+
+#Preview {
+    MeetingHeaderView(secondsElapsed: 60, secondsRemaining: 180)
+}
