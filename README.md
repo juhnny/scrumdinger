@@ -49,6 +49,9 @@ SwiftUI includes modifiers that respond to view life cycle events:
 - onDisappear(perform:) triggers actions when a view disappears from screen.
 
 ### Managing state and lifecycle
+
+SwiftUI provides life cycle methods to trigger events when a view appears and disappears. For example, you could add onAppear(perform:) to start an animation after a view appears. And you could add onDisappear(perform:) to release unnecessary resources when a view disappears.
+
 ### Updating app data
 
 ## Persistence and error handling
