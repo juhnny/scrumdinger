@@ -3,8 +3,17 @@
 Source code for the [Apple iOS tutorial](https://developer.apple.com/tutorials/app-dev-training)
 
 ## SwiftUI essentials
+### Getting started with Scrumdinger
+### Using stacks to arrange views
+
 ## Views
+### Creating a card view
+### Displaying dadta in a list
+
 ## Navigation and modal presentation
+### Creating a navigation hierarchy
+### Managing data flow between views
+### Creating the edit view
 
 ## Passing Data
 ### passing data with bindings
