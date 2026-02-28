@@ -63,6 +63,24 @@ SwiftUI provides life cycle methods to trigger events when a view appears and di
 
 ### Updating app data
 
+The array of DailyScrum items in ScrumdingerApp is the source of truth for the app’s data. 
+ScrumsView has a binding to the array, and it passes a binding to an individual item in the array to DetailView. 
+The detail view passes the binding to MeetingView. 
+Bindings keep your model data in sync with a single source of truth, so all your views reflect the same data.
+
+ScrumdingerApp {
+    @State var scrums: [DailyScrum]
+}
+ScrumsView {
+    @Binding var scrums: [DailyScrum]
+}
+DetailView {
+    @Binding var scrum: DailyScrum
+}
+MeetingView {
+    @Binding var scrum: DailyScrum
+}
+
 With the @Environment property wrapper, you can read a value that the view’s environment stores, such as the view’s presentation mode, scene phase, visibility, or color scheme.
 
 ## Persistence and error handling
