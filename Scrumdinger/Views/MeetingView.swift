@@ -32,17 +32,13 @@ struct MeetingView: View {
         .padding()
         .foregroundColor(scrum.theme.accentColor)
         .onAppear {
-            scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendeeNames: scrum.attendees.map{ $0.name })
-            scrumTimer.speakerChangedAction = { // ScrumTimer calls this action when a speaker’s time expires.
-                player.seek(to: .zero) // plays from the beginning.
-                player.play()
-            }
-            scrumTimer.startScrum()
+            startScrum()
         }
-        .onDisappear{
-            scrumTimer.stopScrum()
+        .onDisappear{ // Disappear(perform:) executes the closure when the view disappears
+            endScrum()
         }
         .navigationBarTitleDisplayMode(.inline)
+        
 //        VStack {
 //            Image(systemName: "globe")
 //                .imageScale(.large)
@@ -50,6 +46,22 @@ struct MeetingView: View {
 //            Text("Hello, world!")
 //        }
 //        .padding()
+    }
+    
+    private func startScrum() {
+        scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendeeNames: scrum.attendees.map{ $0.name })
+        scrumTimer.speakerChangedAction = { // ScrumTimer calls this action when a speaker’s time expires.
+            player.seek(to: .zero) // plays from the beginning.
+            player.play()
+        }
+        scrumTimer.startScrum()
+    }
+    
+    private func endScrum() {
+        scrumTimer.stopScrum()
+        // 회의 기록 남기기
+        let newHistory = History(attendees: scrum.attendees)
+        scrum.history.insert(newHistory, at: 0)
     }
 }
 
