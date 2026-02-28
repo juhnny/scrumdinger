@@ -63,6 +63,8 @@ SwiftUI provides life cycle methods to trigger events when a view appears and di
 
 ### Updating app data
 
+With the @Environment property wrapper, you can read a value that the view’s environment stores, such as the view’s presentation mode, scene phase, visibility, or color scheme.
+
 ## Persistence and error handling
 ### Persisting data
 ### Handling errors

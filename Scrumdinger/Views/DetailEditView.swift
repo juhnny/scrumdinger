@@ -10,7 +10,13 @@ import SwiftUI
 struct DetailEditView: View {
 //    @State private var scrum = DailyScrum.emptyScrum
     @Binding var scrum: DailyScrum
+    let saveEdits: (DailyScrum) -> Void
+    
     @State private var attendeeName = ""
+    // This environment value contains an instance of DismissAction. When you call the instance, the system performs the dismissal of the edit view.
+    // With the @Environment property wrapper, you can read a value that the view’s environment stores,
+    // such as the view’s presentation mode, scene phase, visibility, or color scheme.
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         // The Form container automatically adapts the appearance of controls when it renders on different platforms. 라고 하는데 무슨 말이지?
@@ -56,11 +62,24 @@ struct DetailEditView: View {
                 }
             }
         }
-        
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    // use the dismiss environment value to dismiss the edit view when tapped
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Done") {
+                    saveEdits(scrum)
+                    dismiss()
+                }
+            }
+        }
     }
 }
 
 #Preview {
     @Previewable @State var scrum = DailyScrum.sampleData[0]
-    DetailEditView(scrum: $scrum)
+    DetailEditView(scrum: $scrum, saveEdits: { _ in })
 }
