@@ -85,6 +85,15 @@ With the @Environment property wrapper, you can read a value that the view’s e
 
 ## Persistence and error handling
 ### Persisting data
+
+#### SwiftData
+
+Use the SwiftData framework to query the persistent store and keep data synced across app launches.
+
+Refactor the app’s data models into @Model classes.
+
+For models with parent-child relationships, you can use the @Relationship macro to clearly communicate those relationships to SwiftData. 
+
 ### Handling errors
 
 ## Drawing
