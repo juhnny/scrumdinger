@@ -7,9 +7,12 @@
 
 import Foundation
 import ThemeKit
+import SwiftData
 
-struct DailyScrum: Identifiable {
-    let id: UUID
+// By annotating DailyScrum with @Model and class, the data model becomes a reference type that SwiftData manages.
+@Model
+class DailyScrum: Identifiable {
+    var id: UUID
     var title: String
     var attendees: [Attendee]
     var lengthInMinutes: Int
